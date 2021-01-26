@@ -1,0 +1,45 @@
+﻿MC6847 6502 vram Algorithm
+By: Joseph Gaetano Luca
+
+
+org $8000 ; set origin
+
+
+start:
+
+
+SET PORT B TO INPUT
+LDX $600A ; load contents of key flag into the x register
+CPX #%10000000 ; does x = 10000000
+JMP vram_write ; if it does jump to vram_write
+BNE start ; if it does not loop back to start
+
+
+vram_write:
+
+
+LDY 4000 ; load the contents of 4000 into y register
+LDA $6003 ; load the contents of the keyboard
+STA 7000,Y ; store keyboard to vram
+INC 4000 ; increment the contents of 4000 by 1
+JMP start ; jump back to the start vector
+
+
+org $7ffc
+word $0080
+word 0000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+MC647 6502 Copyright © 2021 Joseph Gaetano Luca GNU General Public License v3.0

@@ -10,7 +10,7 @@ start:
 
 SET PORT B TO INPUT
 LDX $600A ; load contents of key flag into the x register
-CPX #%10000000 ; does x = 10000000
+CPX #%00000001 ; does x = 00000001
 BNE start ; if it does not loop back to start
 
 
